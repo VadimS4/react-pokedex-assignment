@@ -1,7 +1,8 @@
 import React from 'react';
 import '../styling/list.css';
 
-const List = () => {
+const List = (props) => {
+    console.log(props.pokemons)
     return(
         <div className="list">
             <div className="title">
