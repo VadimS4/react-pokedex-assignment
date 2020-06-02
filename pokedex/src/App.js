@@ -13,29 +13,28 @@ class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      pokemons : [
-        "bulbasaur",
-        "ivysaur",
-        "venusaur",
-        "charmander",
-        "charmeleon",
-        "charizard",
-        "squirtle",
-        "wartortle",
-        "blastoise",
-        "caterpie",
-        "metapod",
-        "butterfree",
-        "weedle",
-        "kakuna",
-        "beedrill",
-        "pidgey",
-        "pidgeotto",
-        "pidgeot",
-        "rattata",
-        "raticate"
-      ]
+      pokemons : [],
+      filteredPokemons: [],
+      selectedPokemon: []
     }
+  }
+
+  componentWillMount = () => {
+    fetch("https://pokeapi.co/api/v2/pokemon?offset=0&limit=150")
+    .then(resp => resp.json())
+    .then(json => {
+      this.setState({
+        pokemons: json,
+        filteredPokemons: json
+      })
+    })
+    .catch(err => console.log(err))
+  }
+
+  onButtonClick = (pokemon) => {
+    this.setState({
+      selectedPokemon: pokemon
+    })
   }
 
 
@@ -44,12 +43,8 @@ class App extends React.Component {
       <div className="App">
         <Router>
           <Switch>
-            <Route path="/">
-              <List pokemons={this.state.pokemons}/>
-            </Route>
-            <Route path="/pokemon">
-              <Detail />
-            </Route>
+            <Route exact path="/" render={(props) => <List {...props} pokemons={this.state.pokemons} onButtonClick={this.onButtonClick}/>} />
+            <Route path={`/${this.state.selectedPokemon.name}`} render={(props) => <Detail {...props} selectedPokemon={this.state.selectedPokemon}/>} />
           </Switch>
         </Router>
       </div>
