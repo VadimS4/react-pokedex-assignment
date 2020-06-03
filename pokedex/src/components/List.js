@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import '../styling/list.css';
 
 class List extends React.Component {
@@ -30,4 +31,10 @@ class List extends React.Component {
     }
 }
 
-export default List;
+const mapStateToProps = (state) => {
+    return {
+        pokemons: state.appReducer.pokemons
+    }
+}
+
+export default connect(mapStateToProps)(List);
