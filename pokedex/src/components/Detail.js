@@ -7,7 +7,14 @@ class Detail extends React.Component {
         console.log(this.props.selectedPokemon)
         return (
             <div className="detail">
-                <h1>{this.props.selectedPokemon.name}</h1>
+                <img src={`${this.props.selectedPokemon.sprites.front_default}`} alt="sprite_img" className="img"></img>
+                <div className="info">
+                    <h1 className="name">{this.props.selectedPokemon.name}</h1>
+                    <div className="small_details">
+                        <h2>Pokemon Height: {this.props.selectedPokemon.height}</h2>
+                        <h2>Pokemon Weight: {this.props.selectedPokemon.weight}</h2>
+                    </div>
+                </div>
             </div>
         )
     }
