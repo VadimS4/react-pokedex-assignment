@@ -29,7 +29,7 @@ class App extends React.Component {
       <div className="App">
         <Router>
           <Switch>
-            <Route exact path="/" render={() => <List onButtonClick={this.onButtonClick}/>} />
+            <Route exact path="/" render={() => <List onButtonClick={this.onButtonClick} />}/>
             <Route path={`/${this.props.selectedPokemon.name}`} render={() => <Detail />} />
           </Switch>
         </Router>
