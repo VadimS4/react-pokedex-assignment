@@ -1,5 +1,6 @@
 const initialState = {
-    pokemons: []
+    pokemons: [],
+    selectedPokemon: []
 }
 
 const appReducer = (state = initialState, action) => {
@@ -13,13 +14,13 @@ const appReducer = (state = initialState, action) => {
                 pokemons: action.payload
             }
         }
-        // case 'FETCH_POKEMON': {
-        //     console.log('fetching')
-        //     return {
-        //         ...state,
-        //         selectedPokemon: action.payload
-        //     }
-        // }
+        case 'ADD_POKEMON': {
+            console.log('fetching', action)
+            return {
+                ...state,
+                selectedPokemon: action.payload
+            }
+        }
         default:
             return state;
     }

@@ -1,13 +1,22 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import '../styling/detail.css';
 
-const Detail = (props) => {
-    console.log(props)
-    return(
-        <div className="detail">
-            <h1>{props.selectedPokemon.name}</h1>
-        </div>
-    )
+class Detail extends React.Component {
+    render() {
+        console.log(this.props.selectedPokemon)
+        return (
+            <div className="detail">
+                <h1>{this.props.selectedPokemon.name}</h1>
+            </div>
+        )
+    }
 }
 
-export default Detail;
+const mapStateToProps = (state) => {
+    return {
+        selectedPokemon: state.appReducer.selectedPokemon
+    }
+}
+
+export default connect(mapStateToProps)(Detail);

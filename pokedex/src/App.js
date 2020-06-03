@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchPokemons } from './actions/appActions';
+import { fetchPokemons, addPokemon } from './actions/appActions';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import List from './components/List';
 import Detail from './components/Detail';
@@ -21,9 +21,7 @@ class App extends React.Component {
   }
 
   onButtonClick = (pokemon) => {
-    this.setState({
-      selectedPokemon: pokemon
-    })
+    this.props.getPokemonDetails(pokemon.name)
   }
 
   render() {
@@ -31,8 +29,8 @@ class App extends React.Component {
       <div className="App">
         <Router>
           <Switch>
-            <Route exact path="/" render={(props) => <List {...props} onButtonClick={this.onButtonClick}/>} />
-            <Route path={'/pokemon'} render={(props) => <Detail {...props} selectedPokemon={this.state.selectedPokemon}/>} />
+            <Route exact path="/" render={() => <List onButtonClick={this.onButtonClick}/>} />
+            <Route path={`/${this.props.selectedPokemon.name}`} render={() => <Detail />} />
           </Switch>
         </Router>
       </div>
@@ -42,13 +40,15 @@ class App extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    pokemons: state.appReducer.pokemons
+    pokemons: state.appReducer.pokemons,
+    selectedPokemon: state.appReducer.selectedPokemon
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    getPokemons: () => {(fetchPokemons(dispatch))}
+    getPokemons: () => {(fetchPokemons(dispatch))},
+    getPokemonDetails: (pokemon) => {(addPokemon(dispatch, pokemon))}
   }
 }
 

@@ -1,8 +1,50 @@
 .list {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+}
+
+.top_section {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.title {
+    display: flex;
+    justify-content: space-around;
+    font-size: 2.5em;
+}
+
+.search {
+    width: 25em;
+    height: 2em;
+}
+
+.ul {
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-right: 2.5em;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 25rem;
+    height: auto;
+    background-color: lightgrey;
+    border-radius: 1em;
+    padding: 0.5em;
 }
 
 .pokemon {
     list-style: none;
+    margin-top: 2em;
+    margin-bottom: 1.5em;
+}
+
+.details {
+    cursor: pointer;
 }
