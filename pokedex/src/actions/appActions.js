@@ -10,6 +10,18 @@ export const fetchPokemons = (dispatch) => {
     .catch(err => console.log(err))
 }
 
+export const addPokemon = (dispatch, pokemon) => {
+    fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
+    .then(resp => resp.json())
+    .then(json => {
+        dispatch ({
+            type: 'ADD_POKEMON',
+            payload: json
+        })
+    })
+    .catch(err => console.log(err))
+}
+
 // export const fetchPokemon = (dispatch) => {
 //     fetch()
 // }
